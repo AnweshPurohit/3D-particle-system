@@ -1,0 +1,108 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #000;
+    overflow: hidden;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+canvas {
+    display: block;
+    /* Removes default inline-block spacing */
+}
+
+#ui-container {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: white;
+    z-index: 10;
+    /* pointer-events: none; Remove this so we can click the close button */
+    background: rgba(0, 0, 0, 0.5);
+    padding: 15px;
+    border-radius: 10px;
+    backdrop-filter: blur(5px);
+
+    /* Animation state: Hidden by default */
+    transform: translateX(-150%) scale(0.8);
+    opacity: 0;
+    transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55), opacity 0.5s ease;
+}
+
+#ui-container.visible {
+    /* Animation state: Visible */
+    transform: translateX(0) scale(1);
+    opacity: 1;
+}
+
+#drag-me-btn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 11;
+    /* Above ui-container if they overlap, though they shouldn't */
+    padding: 10px 25px;
+
+    /* Glassmorphism */
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+
+    color: white;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+    transition: all 0.3s ease;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+#drag-me-btn.hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.9);
+}
+
+#drag-me-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+}
+
+#drag-me-btn:active {
+    transform: scale(0.95);
+}
+
+#close-menu-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.2s, transform 0.2s;
+}
+
+#close-menu-btn:hover {
+    opacity: 1;
+    transform: rotate(90deg);
+}
+
+#ui-container h1 {
+    margin: 0 0 10px 0;
+    font-size: 1.5rem;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+#ui-container p {
+    margin: 5px 0;
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
